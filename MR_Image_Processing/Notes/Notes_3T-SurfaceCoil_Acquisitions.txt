@@ -1,0 +1,32 @@
+% if ~isfield(hdr, 'excludeDistal')
+%     hdr.excludeDistal = true; % Excludes erroneous voxels at distal coordinates.
+% end
+
+% Exclude distal slices which might aliasing.
+% if hdr.excludeDistal
+% 
+%     x_full = 1:matrix_size(1);
+%     y_full = 1:matrix_size(2);
+%     z_full = 1:matrix_size(3);
+%
+%     if contains(dataset, '3T_Rot1') || contains(dataset, '3T_Rot2')
+%             y_keep = 31:200;
+%         if contains(dataset, '3T_Rot1')
+%             x_keep = 31:200;
+%             z_keep = 35:156;
+%         elseif contains(dataset, '3T_Rot2')
+%             x_keep = 31:170;
+%             z_keep = 5:126;
+%         end
+%         
+%         Phs(setdiff(x_full, x_keep), :, :, :) = 0;
+%         Magn(setdiff(x_full, x_keep), :, :, :) = 0;
+%
+%         Phs(:, setdiff(y_full, y_keep), :, :) = 0;
+%         Magn(:, setdiff(y_full, y_keep), :, :) = 0;
+%
+%     end
+% 
+% Phs(:, :, setdiff(z_full, z_keep), :) = 0;
+% Magn(:, :, setdiff(z_full, z_keep), :) = 0;
+% end

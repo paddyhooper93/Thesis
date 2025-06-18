@@ -1,0 +1,24 @@
+InitializeVar_Notes.txt
+
+% Crop the prelim dataset to analyse the quadrant containing 
+% agarose vial
+% if contains(data_fn,"Prelim")
+%     [Magn] = prelim_crop(Magn, FS);
+%     [Phs] = prelim_crop(Phs, FS);
+% end
+
+% This code removes earlier slices affected by artefacts adjacent to
+% the vial holder. Usually air pockets diffuse into the first 20 slices.
+% It was important to use all available TEs when calculating iMag and R2s
+% to generate robust masking later on.
+
+% Calculate R2s and iMag using un-restricted TEs -> for better masking.
+
+    % Note on 7T_BL datasets:
+    % At Baseline (tp = 00 mth), the phantom had some residual detergent
+    % from washing, making the first 40 slices erroneous.
+    % When observing the 7T_BL pipeline, the fieldmapping shows large
+    % variability between slices due to chemical shift.
+    % Interestingly, the background field correction actually corrects
+    % this variability. The 7T_BL dataset looks similar to both
+    % the 7T_9mth and 7T_24mth datasets after background field correction.

@@ -1,0 +1,12 @@
+FieldMap_UnwrapPhase_Notes.txt
+
+%% (Option 1): ROMEO 1st-echo template unwrapping & fieldmap calculation
+% Fieldmap calculation: (inverse-variance frequency) weighted echo averaging
+% Phs_cor -> 'corrected_phase.nii' -> eddy correction
+
+%% (Option 2): MEDI complex NLF (NonLinear Fitting) fieldmap calculation & ROMEO spatial unwrapping
+% Use Phs_cor as input Phs to Fit_ppm_complex.m
+% Unwrap iFreq_raw with ROMEO
+% Use Magnitude at TE1 for best SNR (robust unwrapping)
+% SEPIA bipolar eddy correction "FastBipolarCorrect.m" doesn't seem to work well at 7 T (in our dataset).
+% MEDI function "iField_correction.m" -> nil effect, good or bad.

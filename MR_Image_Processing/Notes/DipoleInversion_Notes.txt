@@ -1,0 +1,7 @@
+DipoleInversion_Notes.txt
+
+% ROMEO fieldmap reduces noise about CaCO3 (SNR-deprived).
+% MEDI-SMV is less sensitive to noise than "MEDI".
+% "MEDI-SMV" (Works well in low susceptibility datasets manifesting granular noise i.e., CaCO3)
+% RelativeResidualMasking creates holes in the QSMMask
+% MEDI-SMV works when there are NO holes in the QSMMask.

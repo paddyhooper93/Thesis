@@ -1,0 +1,64 @@
+%% Wrapper_BlandAltman_Valerie.m
+clc
+clearvars
+close all
+
+% Load 'Vars_Replicability.mat'
+dir='C:\Users\rosly\Documents\Valerie_PH\field_to_chi\analysis';
+matfile=fullfile(dir, 'Vars_Replicability.mat');
+load(matfile, 'qsm_Mean_matr', 'ref_Mean_matr');
+
+% Enter fields for BlandAltman function
+corrinfo = {'R2';'eq'}; % stats to display of correlation scatter plot
+BAinfo = {'ks'; 'LOA'}; % stats to display on Bland-Altman plot
+limits = 'tight'; % how to set the axes limits
+% colors = [0 0 1; 1 0 0]; % RGB triplets
+% colors = 'br'; % colors for the data sets using character codes
+gnames={['Straw, ', char(0x2225)], 'Straw, \perp', 'Ellipsoid, Low Fe', ...
+    'Ellipsoid, High Fe', 'Ellipsoid, Low Ca', 'Ellipsoid, High Ca'};
+% gnames = {'Str\_Prll', 'Str\_Perp', 'Fe\_Low', 'Fe\_High', 'Ca\_Low', 'Ca\_High'};
+Label = {'\chi_{Neutral}', '\chi_{Oblique}', 'ppm'};
+%% 3 T
+close all
+% data_cosmos1=ref_Mean_matr(1,:);
+data_neutral1=qsm_Mean_matr(1,:);
+data_oblique1=mean(qsm_Mean_matr(2:3,:),1);
+title = 'BA Analysis: 3 T'; 
+[cr1, fig1, stats1]=BlandAltman(data_neutral1, data_oblique1, Label, title, gnames, ...
+    'corrInfo', corrinfo, 'baInfo', BAinfo, 'axesLimits', limits, ...
+   'showFitCI', 'on', 'data1Mode', 'Compare');
+hold off
+saveas(gcf,fullfile(dir,'BA_NvsO_3T.png'));
+
+%% 7 T
+close all
+data_neutral2=ref_Mean_matr(7,:);
+data_oblique2=mean(qsm_Mean_matr(8:10,:),1);
+title = 'BA Analysis: 7 T';
+[cr2, fig2, stats2]=BlandAltman(data_neutral2, data_oblique2, Label, title, gnames, ...
+    'corrInfo', corrinfo, 'baInfo', BAinfo, 'axesLimits', limits, ...
+    'showFitCI', 'on', 'data1Mode', 'Compare');
+hold off
+saveas(gcf,fullfile(dir,'BA_NvsO_7T.png'));
+
+%% 3 T - > no straws
+close all
+data_neutral1=qsm_Mean_matr(1,3:6);
+data_oblique1=mean(qsm_Mean_matr(2:3,3:6),1);
+title = 'BA Analysis: 3 T'; 
+[cr1, fig1, stats1]=BlandAltman(data_neutral1, data_oblique1, Label, title, gnames, ...
+    'corrInfo', corrinfo, 'baInfo', BAinfo, 'axesLimits', limits, ...
+   'showFitCI', 'on', 'data1Mode', 'Compare');
+hold off
+saveas(gcf,fullfile(dir,'BA_NvsO_3T.png'));
+
+%% 7 T - > no straws
+close all
+data_neutral2=ref_Mean_matr(7,:);
+data_oblique2=mean(qsm_Mean_matr(8:10,:),1);
+title = 'BA Analysis: 7 T';
+[cr2, fig2, stats2]=BlandAltman(data_neutral2, data_oblique2, Label, title, gnames, ...
+    'corrInfo', corrinfo, 'baInfo', BAinfo, 'axesLimits', limits, ...
+    'showFitCI', 'on', 'data1Mode', 'Compare');
+hold off
+saveas(gcf,fullfile(dir,'BA_NvsO_7T.png'));

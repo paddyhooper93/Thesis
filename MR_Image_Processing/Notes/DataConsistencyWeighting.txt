@@ -1,0 +1,13 @@
+% fieldMapSD = variance of the frequency map
+% SEPIA function "ComputeResidualGivenR2sFieldmap.m":
+% monoexponential decay model with single frequency shift -> ...
+% identifies high-frequency voxels (vial edge: particularly useful at 7 T).
+%% Apply relativeResidual at exclude_threshold as a mask
+relativeResidualMask = double(relativeResidualMap < 0.5);
+%% Apply relativeResidual at exclude_threshold as weights:
+relativeResidualWeights = relativeResidualMap;
+relativeResidualWeights(relativeResidualWeights>exclude_threshold) = exclude_threshold;
+% weightsRelativeResidual should be between [0,1]
+relativeResidualWeights = (exclude_threshold - relativeResidualWeights) ./ exclude_threshold;
+% modulate weighting map by relative residual
+weights = weights .* relativeResidualWeights;

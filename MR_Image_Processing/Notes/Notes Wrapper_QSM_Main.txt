@@ -1,0 +1,17 @@
+Notes Wrapper_QSM_Main.txt
+
+%% Previous analysis:
+% 3T => (iMag>30% for CSFMask, slices 21 to end)
+% 7T => (no SDC)
+%% (Previously-Current) analysis:
+% 3T => (Magn(:,:,:,end)>40%, 12 mm erosion for CSFMask, slices 11 to 94)
+% 7T => (SDC)
+%% Current analysis:
+% Both 3 T and 7 T: Process the part of the matrix containing ferritin
+% quadrant, the 2D field-of-view will be around 100 x 100 mm, and without
+% any further slice removal.
+%
+% Matrix_size (3T) = 192 x 192, cropped out 100 x 100 vox (100 x 100 mm)
+% Matrix_size (7T) = 272 x 272, cropped out 142 x 142 vox (~100 x 100 mm)
+
+%  '3T_BL', '3T_BL_Rep', '3T_9mth', '3T_24mth', '3T_24mth_Rep', ...
